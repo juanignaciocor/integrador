@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {% block content %}
+    <div>
+
+        <form action="/edit/{{data.id}}?_method=PUT" method="POST">
+            <input type="hidden" name="?_method" value="PUT">
+            <div>
+                <label for=""> NOBMRE </label>
+                <input type="text" name="nombre" placeholder="nombre del producto">
+            </div>
+            <div>
+                <label for=""> DESCRIPCION </label>
+                <input type="text" name="descripcion" placeholder="Descripcion del producto">
+            </div>
+            <div>
+                <label for=""> DISPONIBLE </label>
+                <input type="radio" name="disponibilidad" value="true">
+                <input type="radio" name="disponibilidad" value="false">
+
+            </div>
+            <div>
+                <label for=""> PRECIO </label>
+                <input type="number" name="precio">
+            </div>
+            <input type="submit" value="Submit">
+        </form>
+
+    </div>
+    {% endblock %}
+</body>
+
+</html>
