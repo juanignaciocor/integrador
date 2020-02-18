@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
 const Productos = require("../models/productos.js")
+const Categoria = require("../models/categorias")
 const db = require("../db")
 
 
@@ -137,22 +138,46 @@ router.get("/:id", (req, res, next) => {
 
 
 router.get("/", (req, res, next) => {
-    console.log(req.query.hola)
+
+    if (req.query.categoria) {
 
 
-    Productos.findAll()
-        .then((data) => {
-
-            res.sendStatus(200)
-
+        Categoria.findOne({
+            where: {
+                nombre: req.query.categoria
+            }
         })
-        .catch(err => {
+            .then((data) => {
 
-            res.sendStatus(500)
+                Productos.findAll({
+                    where: {
 
-        })
+                        CategoriaId: data.dataValues.id
+                    }
+                })
+                    .then((data) => {
+                        console.log(data)
+                        res.json(data)
+                    })
+
+            })
 
 
+    }
+
+    else {
+        Productos.findAll()
+            .then((data) => {
+
+                res.json(data)
+            })
+            .catch(err => {
+
+                res.sendStatus(500)
+
+            })
+
+    }
 
 })
 module.exports = router;

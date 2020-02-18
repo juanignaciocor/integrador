@@ -5,12 +5,6 @@ class Producto extends S.Model { }
 
 Producto.init({
 
-    titulo: {
-
-        type: S.STRING
-
-
-    },
     nombre: {
 
         type: S.STRING
@@ -36,7 +30,7 @@ Producto.init({
             if (data === false) {
 
 
-                this.titulo = `${this.nombre} NO DISPONIBLE`
+                this.nombre = `${this.nombre} NO DISPONIBLE`
 
 
             }
@@ -79,6 +73,6 @@ Producto.addHook("beforeCreate", (producto, option) => {
    */
 
 
-Producto.belongsTo(Categorias, { as: 'Typo' });
+Producto.belongsTo(Categorias, { as: 'Categoria' });
 
 module.exports = Producto;
