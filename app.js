@@ -20,9 +20,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use('/', routes);
 
-app.get('/', function (req, res) {
-    res.redirect('/wiki');
-});
 
 app.use(function (err, req, res, next) {
     console.error(err);
